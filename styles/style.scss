@@ -6,8 +6,12 @@
 }
 
 @import "aside";
+@import "main";
 
 body {
     display: flex;
     height: 100vh;
+    width: 100vw;
+    background: url("images/sky.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
