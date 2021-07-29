@@ -2,11 +2,12 @@ main {
     width: 80%;
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    .books-holder {
-        height: 60%;
-        background-color: #333;
-        width: 100%;
+    #books-container {
+        height: 580px;
+        background-color: transparent;
+        width: 85%;
         display: flex;
         overflow-y: hidden;
         overflow-x: auto;
@@ -14,11 +15,11 @@ main {
         white-space: nowrap;
 
         .book {
-            height: 500px;
-            min-width: 300px;
-            background-color: yellow;
-            border: solid 1px black;
-            display: inline-block;
+            height: 400px;
+            min-width: 340px;
+            margin: 0px 30px;
+            background: url("images/closed-book.png") no-repeat;
+            background-size: cover;
         }
     }
 }

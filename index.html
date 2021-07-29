@@ -13,20 +13,20 @@
     <aside>
         <div class="aside-top">
             <h1>LIBRARY</h1>
-            <h3>Total books: <span></span></h3>
-            <h3>Books read: <span></span></h3>
-            <h3>Total pages: <span></span></h3>
-            <h3>Pages read: <span></span></h3>
+            <h3>Total books: <span id="total-books">0</span></h3>
+            <h3>Books read: <span id="books-read">0</span></h3>
+            <h3>Total pages: <span id="total-pages">0</span></h3>
+            <h3>Pages read: <span id="pages-read">0</span></h3>
         </div>
         <div class="aside-mid">
             <h3>ADD A BOOK</h3>
-            <input type="text" name="title" class="title" placeholder="title">
-            <input type="text" name="author" class="author" placeholder="author">
-            <input type="number" name="pages-total" class="pages-total" placeholder="total pages">
-            <input type="number" name="pages-read" class="pages-read" placeholder="read pages">
+            <input type="text" name="title" class="input" id="inp-title" placeholder="title">
+            <input type="text" name="author" class="input" id="inp-author" placeholder="author">
+            <input type="number" name="pages-total" class="input" id="inp-pages-total" placeholder="total pages">
+            <input type="number" name="pages-read" class="input" id="inp-pages-read" placeholder="read pages">
             <div class="btn-holder">
-                <button>CLEAR</button>
-                <button>ADD</button>
+                <button id="btn-clear">CLEAR</button>
+                <button id="btn-add">ADD</button>
             </div>
         </div>
         <div class="aside-bot">
@@ -34,8 +34,8 @@
         </div>
     </aside>
     <main>
-        <div class="books-holder">
-            <div class="book">1</div>
+        <div id="books-container">
+            <!-- <div class="book">1</div>
             <div class="book">2</div>
             <div class="book">3</div>
             <div class="book">4</div>
@@ -45,7 +45,7 @@
             <div class="book">8</div>
             <div class="book">9</div>
             <div class="book">10</div>
-            <div class="book">11</div>
+            <div class="book">11</div> -->
         </div>
     </main>
 
