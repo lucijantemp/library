@@ -33,45 +33,14 @@ btnClear.addEventListener("click", () => {
 // btn add
 btnAdd.addEventListener("click", () => {
     // 1.check input
-    // 2.add book (make html, fill html, add book)
-    let book = document.createElement("div")
-    book.classList.add("book")
-    booksContainer.appendChild(book)
-    // add title and author
-    let bookTitle = document.createElement("h1")
-    let bookAuthor = document.createElement("h2")
-    bookTitle.innerHTML = inputTitle.value
-    bookAuthor.innerHTML = inputAuthor.value
-    book.appendChild(bookTitle)
-    book.appendChild(bookAuthor)
-    // add pages and del/edit option
-    let optionsContainer = document.createElement("div")
-    optionsContainer.classList.add("options-container")
-    let optionEditContainer = document.createElement("div")
-    optionEditContainer.classList.add("options-edit-container")
-    let optionDelete = document.createElement("button")
-    optionDelete.classList.add("option-delete")
-    let optionEditDisplay = document.createElement("div")
-    optionEditDisplay.classList.add("edit-display")
-    let optionEditPlus = document.createElement("button")
-    optionEditPlus.classList.add("edit-pages")
-    optionEditPlus.classList.add("plus")
-    let optionEditMinus = document.createElement("button")
-    optionEditMinus.classList.add("edit-pages")
-    optionEditMinus.classList.add("minus")
-    book.appendChild(optionsContainer)
-    optionsContainer.appendChild(optionEditContainer)
-    optionsContainer.appendChild(optionDelete)
-    optionEditContainer.appendChild(optionEditDisplay)
-    optionEditContainer.appendChild(optionEditPlus)
-    optionEditContainer.appendChild(optionEditMinus)
-    optionEditDisplay.innerHTML = `<span class="span-pages-read">${inputPagesRead.value}</span>/<span class="span-pages-total">${inputPagesTotal.value}</span>`
-    optionEditMinus.innerHTML = "-"
-    optionEditPlus.innerHTML = "+"
-    optionDelete.innerHTML = "delete"
-    updateEventListeners()
-    // 3.update info
-    updateInfo()
+    if (inputValid()) {
+        // 2.add book (make html, fill html, add book)
+        makeBook()
+        updateEventListeners()
+        // 3.update info
+        updateInfo()
+    }
+
 })
 
 
@@ -115,18 +84,81 @@ function updateEventListeners() {
     // first select all +/- btn than convert it to array so I can call reverse() because I need only last 2 elem to update event listener
     let btnsIncDec = Array.from(document.querySelectorAll(".edit-pages")).reverse()
     btnsIncDec.slice(0, 2).forEach(btn => {
-        console.log(btn.getEventListeners)
         btn.addEventListener("click", () => {
             let pagesReadSpan = btn.parentElement.querySelector(".span-pages-read")
+            let pagesTotalSpan = btn.parentElement.querySelector(".span-pages-total")
             switch (btn.innerHTML) {
                 case "+":
+                    // check if number is max
+                    if (!(parseInt(pagesReadSpan.innerHTML) == parseInt(pagesTotalSpan.innerHTML))) {
                     pagesReadSpan.innerHTML = parseInt(pagesReadSpan.innerHTML) + 1
+                    }
                     break
                 case "-":
+                    // check if number is 0
+                    if (!(parseInt(pagesReadSpan.innerHTML) == 0)) {
                     pagesReadSpan.innerHTML = parseInt(pagesReadSpan.innerHTML) - 1
+                    }
                     break
             }
             updateInfo()
         })
     })
+}
+
+function makeBook() {
+    // book div foundation
+    let book = document.createElement("div")
+    book.classList.add("book")
+    booksContainer.appendChild(book)
+    // add title and author
+    let bookTitle = document.createElement("h1")
+    let bookAuthor = document.createElement("h2")
+    bookTitle.innerHTML = inputTitle.value
+    bookAuthor.innerHTML = inputAuthor.value
+    book.appendChild(bookTitle)
+    book.appendChild(bookAuthor)
+    // creating and adding all necesarry nodes
+    let optionsContainer = document.createElement("div")
+    optionsContainer.classList.add("options-container")
+    let optionEditContainer = document.createElement("div")
+    optionEditContainer.classList.add("options-edit-container")
+    let optionDelete = document.createElement("button")
+    optionDelete.classList.add("option-delete")
+    let optionEditDisplay = document.createElement("div")
+    optionEditDisplay.classList.add("edit-display")
+    let optionEditPlus = document.createElement("button")
+    optionEditPlus.classList.add("edit-pages")
+    optionEditPlus.classList.add("plus")
+    let optionEditMinus = document.createElement("button")
+    optionEditMinus.classList.add("edit-pages")
+    optionEditMinus.classList.add("minus")
+    book.appendChild(optionsContainer)
+    optionsContainer.appendChild(optionEditContainer)
+    optionsContainer.appendChild(optionDelete)
+    optionEditContainer.appendChild(optionEditDisplay)
+    optionEditContainer.appendChild(optionEditPlus)
+    optionEditContainer.appendChild(optionEditMinus)
+    optionEditDisplay.innerHTML = `<span class="span-pages-read">${inputPagesRead.value}</span>/<span class="span-pages-total">${inputPagesTotal.value}</span>`
+    optionEditMinus.innerHTML = "-"
+    optionEditPlus.innerHTML = "+"
+    optionDelete.innerHTML = "DELETE"
+}
+
+function inputValid() {
+    // 1. check if total pages is a valid number greater than 0 and less than 100k
+    let regex = /^(0|[1-9]\d{0,4})$/
+    let number = inputPagesTotal.value
+    if (!(number.match(regex)[0] == number)) {
+        console.log("total error")
+        return false
+    }
+    // 2. check if read pages is a valid number greater than 0 and less than total pages
+    let number2 = inputPagesRead.value
+    if ( !((number2.match(regex)[0] == number2) && (parseInt(number2) >= 0) && (parseInt(number2) <= parseInt(number))) ) {
+        console.log("read error")
+        return false
+    }
+
+    return true
 }
