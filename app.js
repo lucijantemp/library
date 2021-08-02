@@ -112,8 +112,10 @@ function updateEventListeners() {
         })
     })
     // +/- btns
-    let btnsIncDec = document.querySelectorAll(".edit-pages")
-    btnsIncDec.forEach(btn => {
+    // first select all +/- btn than convert it to array so I can call reverse() because I need only last 2 elem to update event listener
+    let btnsIncDec = Array.from(document.querySelectorAll(".edit-pages")).reverse()
+    btnsIncDec.slice(0, 2).forEach(btn => {
+        console.log(btn.getEventListeners)
         btn.addEventListener("click", () => {
             let pagesReadSpan = btn.parentElement.querySelector(".span-pages-read")
             switch (btn.innerHTML) {
