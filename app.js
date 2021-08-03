@@ -21,13 +21,12 @@ const btnAdd = document.querySelector("#btn-add")
 const booksContainer = document.querySelector(".books-container")
 
 
-// BTNS
+
+// BUTTONS
 
 // btn clear
 btnClear.addEventListener("click", () => {
-    allInputs.forEach(input => {
-        input.value = ""
-    })
+    clearInputs()
 })
 
 // btn add
@@ -39,6 +38,7 @@ btnAdd.addEventListener("click", () => {
         updateEventListeners()
         // 3.update info
         updateInfo()
+        clearInputs()
     }
 
 })
@@ -106,6 +106,9 @@ function updateEventListeners() {
     })
 }
 
+// these variables will change dynamically based on size of input (this is handled in inputValid() funciton)
+let titleSize = "2rem"
+let authorSize = "2rem"
 function makeBook() {
     // book div foundation
     let book = document.createElement("div")
@@ -115,7 +118,9 @@ function makeBook() {
     let bookTitle = document.createElement("h1")
     let bookAuthor = document.createElement("h2")
     bookTitle.innerHTML = inputTitle.value
+    bookTitle.style.fontSize = titleSize
     bookAuthor.innerHTML = inputAuthor.value
+    bookAuthor.style.fontSize = authorSize
     book.appendChild(bookTitle)
     book.appendChild(bookAuthor)
     // creating and adding all necesarry nodes
@@ -146,19 +151,45 @@ function makeBook() {
 }
 
 function inputValid() {
-    // 1. check if total pages is a valid number greater than 0 and less than 100k
+    // 1. check if title is valid (input will be tested on different regexes to see if font size needs to be adjusted)
+    let regexBig = /^([\w]{1,6}\s){0,4}[\w]{1,6}$/ // 2rem
+    let regexMid = /^([\w]{1,9}\s){0,5}[\w]{1,9}$/ // 1.6rem
+    let regexSmall = /^([\w]{1,15}\s){0,9}[\w]{1,15}$/ // 1.2rem
+
+    let string = inputTitle.value
+    if (string.match(regexBig) && string.match(regexBig)[0] == string) {
+        titleSize = "2rem"
+    } else if (string.match(regexMid) && string.match(regexMid)[0] == string) {
+        titleSize = "1.6rem"
+    } else if (string.match(regexSmall) && string.match(regexSmall)[0] == string) {
+        titleSize = "1.2rem"
+    } else {
+        console.log("title error")
+        return false
+    }
+
+    // 2. check if author name is valid
+
+    // 3. check if total pages is a valid number greater than 0 and less than 100k
     let regex = /^(0|[1-9]\d{0,4})$/
-    let number = inputPagesTotal.value
-    if (!(number.match(regex)[0] == number)) {
+    let number1 = inputPagesTotal.value
+    if (!(number1.match(regex)[0] == number1)) {
         console.log("total error")
         return false
     }
-    // 2. check if read pages is a valid number greater than 0 and less than total pages
+
+    // 4. check if read pages is a valid number greater than 0 and less than total pages
     let number2 = inputPagesRead.value
-    if ( !((number2.match(regex)[0] == number2) && (parseInt(number2) >= 0) && (parseInt(number2) <= parseInt(number))) ) {
+    if ( !((number2.match(regex)[0] == number2) && (parseInt(number2) >= 0) && (parseInt(number2) <= parseInt(number1))) ) {
         console.log("read error")
         return false
     }
 
     return true
+}
+
+function clearInputs() {
+    allInputs.forEach(input => {
+        input.value = ""
+    })
 }
