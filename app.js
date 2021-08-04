@@ -19,6 +19,7 @@ const btnAdd = document.querySelector("#btn-add")
 
 // else
 const booksContainer = document.querySelector(".books-container")
+const message = document.querySelector(".inp-message") // will be used to tell user when input is invalid
 
 
 
@@ -49,16 +50,20 @@ btnAdd.addEventListener("click", () => {
 
 // loops through all books and sets information about books and pages on sidebar
 function updateInfo() {
+
     // count total books
     totalBooks.innerHTML = document.querySelectorAll(".book").length
+
     // count read pages
     let pagesReadTemp = 0
     document.querySelectorAll(".span-pages-read").forEach(i => pagesReadTemp = pagesReadTemp + parseInt(i.innerHTML))
     pagesRead.innerHTML = pagesReadTemp
+
     // count total pages
     let pagesTotalTemp = 0
     document.querySelectorAll(".span-pages-total").forEach(i => pagesTotalTemp = pagesTotalTemp + parseInt(i.innerHTML))
     totalPages.innerHTML = pagesTotalTemp
+    
     // count read books
     let readBooksCount = 0
     document.querySelectorAll(".book").forEach(book => {
@@ -72,6 +77,7 @@ function updateInfo() {
 }
 
 function updateEventListeners() {
+
     // delete btn 
     let btnsDelete = document.querySelectorAll(".option-delete")
     btnsDelete.forEach(btn => {
@@ -80,6 +86,7 @@ function updateEventListeners() {
             updateInfo()
         })
     })
+
     // +/- btns
     // first select all +/- btn than convert it to array so I can call reverse() because I need only last 2 elem to update event listener
     let btnsIncDec = Array.from(document.querySelectorAll(".edit-pages")).reverse()
@@ -151,37 +158,49 @@ function makeBook() {
 }
 
 function inputValid() {
+
     // 1. check if title is valid (input will be tested on different regexes to see if font size needs to be adjusted)
     let regexBig = /^([\w]{1,6}\s){0,4}[\w]{1,6}$/ // 2rem
     let regexMid = /^([\w]{1,9}\s){0,5}[\w]{1,9}$/ // 1.6rem
     let regexSmall = /^([\w]{1,15}\s){0,9}[\w]{1,15}$/ // 1.2rem
 
-    let string = inputTitle.value
-    if (string.match(regexBig) && string.match(regexBig)[0] == string) {
+    let string1 = inputTitle.value
+    if (string1.match(regexBig) && string1.match(regexBig)[0] == string1) {
         titleSize = "2rem"
-    } else if (string.match(regexMid) && string.match(regexMid)[0] == string) {
+    } else if (string1.match(regexMid) && string1.match(regexMid)[0] == string1) {
         titleSize = "1.6rem"
-    } else if (string.match(regexSmall) && string.match(regexSmall)[0] == string) {
+    } else if (string1.match(regexSmall) && string1.match(regexSmall)[0] == string1) {
         titleSize = "1.2rem"
     } else {
-        console.log("title error")
+        message.innerHTML = "Title input is invalid"
+        inputTitle.style.color = "red"
         return false
     }
 
     // 2. check if author name is valid
+    let regexName = /^([a-zA-Z]{1,15}\.?\s){0,4}[a-zA-Z]{1,15}\.?$/ // name can have 5 words max with 15 chars max for each word
+
+    let string2 = inputAuthor.value
+    if (!(string2.match(regexName) && string2.match(regexName)[0] == string2)) {
+        message.innerHTML = "Author input is invalid"
+        inputAuthor.style.color = "red"
+        return false
+    }
 
     // 3. check if total pages is a valid number greater than 0 and less than 100k
     let regex = /^(0|[1-9]\d{0,4})$/
     let number1 = inputPagesTotal.value
-    if (!(number1.match(regex)[0] == number1)) {
-        console.log("total error")
+    if (!(number1.match(regex) && number1.match(regex)[0] == number1)) {
+        message.innerHTML = "Total pages input is invalid"
+        inputPagesTotal.style.color = "red"
         return false
     }
 
     // 4. check if read pages is a valid number greater than 0 and less than total pages
     let number2 = inputPagesRead.value
-    if ( !((number2.match(regex)[0] == number2) && (parseInt(number2) >= 0) && (parseInt(number2) <= parseInt(number1))) ) {
-        console.log("read error")
+    if ( !((number2.match(regex) && number2.match(regex)[0] == number2) && (parseInt(number2) >= 0) && (parseInt(number2) <= parseInt(number1))) ) {
+        message.innerHTML = "Read pages input is invalid"
+        inputPagesRead.style.color = "red"
         return false
     }
 
@@ -191,5 +210,7 @@ function inputValid() {
 function clearInputs() {
     allInputs.forEach(input => {
         input.value = ""
+        input.style.color = "black" // reset colors to default
+        message.innerHTML = "" // delete message if there is any
     })
 }
