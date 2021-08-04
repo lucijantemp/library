@@ -19,3 +19,9 @@ body {
 button:hover {
     cursor: pointer;
 }
+
+@media all and (max-width: 1380px) {
+    .main-title {
+        font-size: 2.8rem;
+    }
+}

@@ -1,5 +1,6 @@
 aside {
     width: 20%;
+    min-width: 220px;
     height: 100vh;
     border-right: 2px solid black;
     display: flex;
@@ -39,6 +40,7 @@ aside {
 
         .inp-message {
             text-align: center;
+            color: red;
         }
 
         .btn-holder {
