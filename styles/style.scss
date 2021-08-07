@@ -8,20 +8,88 @@
 @import "aside";
 @import "main";
 
+html {
+    overflow: hidden; // takes care of bugs while scrolling on mobiles
+}
+
 body {
     display: flex;
     height: 100vh;
     width: 100vw;
     background: url("images/sky.jpg") no-repeat center center fixed;
     background-size: cover;
+    overflow: hidden;
 }
 
 button:hover {
     cursor: pointer;
 }
 
+.btn-mobile-navbar {
+    position: absolute;
+    display: none;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    background-color: transparent;
+    z-index: 1;
+
+    .btn-mobile-slice {
+        background-color: black;
+        height: 5px;
+        width: 30px;
+        border-radius: 2px;
+        transition: transform 500ms;
+    }
+}
+
 @media all and (max-width: 1380px) {
     .main-title {
         font-size: 2.8rem;
+    }
+    .btn-mobile-navbar {
+        display: none;
+    }
+}
+
+@media all and (max-width: 720px) {
+
+    .btn-mobile-navbar {
+        display: flex;
+    }
+
+    main {
+        width: 100%;
+    }
+    
+    aside {
+        position: absolute;
+        width: 100%;
+        display: none;
+        border: none;
+    }
+
+    .not-active {
+        display: none !important;
+    }
+
+    .active {
+        display: flex;
+    }
+
+    .slice-1-active {
+        transform: translateY(13px) rotate(45deg);
+    }
+
+    .slice-2-active {
+        display: none;
+    }
+
+    .slice-3-active {
+        transform: translateY(-12px) rotate(-45deg);
     }
 }

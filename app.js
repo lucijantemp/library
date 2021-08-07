@@ -16,10 +16,15 @@ const allInputs = document.querySelectorAll(".input")
 // btns
 const btnClear = document.querySelector("#btn-clear")
 const btnAdd = document.querySelector("#btn-add")
+const btnMobileNavbar = document.querySelector(".btn-mobile-navbar")
+    const slice1 = document.querySelector(".slice-1")
+    const slice2 = document.querySelector(".slice-2")
+    const slice3 = document.querySelector(".slice-3")
 
 // else
 const booksContainer = document.querySelector(".books-container")
 const message = document.querySelector(".inp-message") // will be used to tell user when input is invalid
+const sidebar = document.querySelector("aside")
 
 
 
@@ -27,7 +32,7 @@ const message = document.querySelector(".inp-message") // will be used to tell u
 
 // btn clear
 btnClear.addEventListener("click", () => {
-    clearInputs()
+    resetInputs()
 })
 
 // btn add
@@ -39,11 +44,20 @@ btnAdd.addEventListener("click", () => {
         updateEventListeners()
         // 3.update info
         updateInfo()
-        clearInputs()
+        resetInputs()
     }
 
 })
 
+// btn mobile navbar (hamburger)
+btnMobileNavbar.addEventListener("click", () => {
+    booksContainer.classList.toggle("not-active")
+    sidebar.classList.toggle("active")
+    // make animation on hamburger slices
+    slice1.classList.toggle("slice-1-active")
+    slice2.classList.toggle("slice-2-active")
+    slice3.classList.toggle("slice-3-active")
+})
 
 
 // FUNCTIONS
@@ -207,7 +221,7 @@ function inputValid() {
     return true
 }
 
-function clearInputs() {
+function resetInputs() {
     allInputs.forEach(input => {
         input.value = ""
         input.style.color = "black" // reset colors to default
