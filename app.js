@@ -16,7 +16,7 @@ const allInputs = document.querySelectorAll(".input")
 // btns
 const btnClear = document.querySelector("#btn-clear")
 const btnAdd = document.querySelector("#btn-add")
-const btnMobileNavbar = document.querySelector(".btn-mobile-navbar")
+const btnHamburger = document.querySelector("#btn-hamburger")
     const slice1 = document.querySelector(".slice-1")
     const slice2 = document.querySelector(".slice-2")
     const slice3 = document.querySelector(".slice-3")
@@ -49,11 +49,11 @@ btnAdd.addEventListener("click", () => {
 
 })
 
-// btn mobile navbar (hamburger)
-btnMobileNavbar.addEventListener("click", () => {
+// btn mobile navbar (btnHamburger)
+btnHamburger.addEventListener("click", () => {
     booksContainer.classList.toggle("not-active")
-    sidebar.classList.toggle("active")
-    // make animation on hamburger slices
+    sidebar.classList.toggle("aside-active")
+    // make animation on btnHamburger slices
     slice1.classList.toggle("slice-1-active")
     slice2.classList.toggle("slice-2-active")
     slice3.classList.toggle("slice-3-active")
