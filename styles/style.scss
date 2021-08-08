@@ -56,6 +56,7 @@ button:hover {
     }
 }
 
+// mobile responsivness
 @media all and (max-width: 720px) {
 
     #btn-hamburger {
@@ -72,6 +73,11 @@ button:hover {
         border: none;
         transition: transform 250ms;
         transform: translateY(-100%);
+        padding: 0 50px;
+
+        .aside-top, .aside-mid, .aside-bot {
+            width: 100%;
+        }
     }
 
     .not-active {
