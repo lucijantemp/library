@@ -2,7 +2,7 @@ aside {
     width: 20%;
     min-width: 220px;
     height: 100vh;
-    border-right: 2px solid black;
+    border-right: 2px solid $colorBlack;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -11,11 +11,11 @@ aside {
     .aside-top {
         width: 80%;
         margin: 10px 0;
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
+        border-top: 2px solid $colorBlack;
+        border-bottom: 2px solid $colorBlack;
 
         h1 {
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid $colorBlack;
             margin-bottom: 5px;
         }
 
@@ -40,7 +40,7 @@ aside {
 
         .inp-message {
             text-align: center;
-            color: red;
+            color: $colorRed;
         }
 
         .btn-holder {
@@ -53,22 +53,22 @@ aside {
                 width: 80px;
                 height: 40px;
                 letter-spacing: 1px;
-                background-color: white;
-                border: 1px solid black;
+                background-color: $colorWhite;
+                border: 1px solid $colorBlack;
                 border-radius: 6px;
             }
     
             button:hover {
                 cursor: pointer;
-                background-color: #e6e6e6;
+                background-color: $colorWhiteHover;
             }
         }
     }
 
     .aside-bot {
         width: 80%;
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
+        border-top: 2px solid $colorBlack;
+        border-bottom: 2px solid $colorBlack;
         margin-bottom: 20px;
 
         h3 {

@@ -129,7 +129,7 @@ function updateEventListeners() {
 
 // these variables will change dynamically based on size of input (this is handled in inputValid() funciton)
 let titleSize = "2rem"
-let authorSize = "2rem"
+let authorSize = "1.8rem"
 function makeBook() {
     // book div foundation
     let book = document.createElement("div")
@@ -172,6 +172,7 @@ function makeBook() {
 }
 
 function inputValid() {
+    let errorColor = "#ff0000" // red
 
     // 1. check if title is valid (input will be tested on different regexes to see if font size needs to be adjusted)
     let regexBig = /^([\w]{1,6}\s){0,4}[\w]{1,6}$/ // 2rem
@@ -187,7 +188,7 @@ function inputValid() {
         titleSize = "1.2rem"
     } else {
         message.innerHTML = "Title input is invalid"
-        inputTitle.style.color = "red"
+        inputTitle.style.color = `${errorColor}`
         return false
     }
 
@@ -197,7 +198,7 @@ function inputValid() {
     let string2 = inputAuthor.value
     if (!(string2.match(regexName) && string2.match(regexName)[0] == string2)) {
         message.innerHTML = "Author input is invalid"
-        inputAuthor.style.color = "red"
+        inputAuthor.style.color = `${errorColor}`
         return false
     }
 
@@ -206,7 +207,7 @@ function inputValid() {
     let number1 = inputPagesTotal.value
     if (!(number1.match(regex) && number1.match(regex)[0] == number1)) {
         message.innerHTML = "Total pages input is invalid"
-        inputPagesTotal.style.color = "red"
+        inputPagesTotal.style.color = `${errorColor}`
         return false
     }
 
@@ -214,7 +215,7 @@ function inputValid() {
     let number2 = inputPagesRead.value
     if ( !((number2.match(regex) && number2.match(regex)[0] == number2) && (parseInt(number2) >= 0) && (parseInt(number2) <= parseInt(number1))) ) {
         message.innerHTML = "Read pages input is invalid"
-        inputPagesRead.style.color = "red"
+        inputPagesRead.style.color = `${errorColor}`
         return false
     }
 
@@ -224,7 +225,7 @@ function inputValid() {
 function resetInputs() {
     allInputs.forEach(input => {
         input.value = ""
-        input.style.color = "black" // reset colors to default
+        input.style.color = "#000000" // reset colors to default
         message.innerHTML = "" // delete message if there is any
     })
 }

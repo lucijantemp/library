@@ -5,6 +5,12 @@
     font-family: "Poppins", sans-serif;
 }
 
+// colors
+$colorBlack: #000000;
+$colorWhite: #ffffff;
+$colorRed: #ff0000;
+$colorWhiteHover: #e6e6e6;
+
 @import "aside";
 @import "main";
 
@@ -39,7 +45,7 @@ button:hover {
     z-index: 1;
 
     .hamburger-slice {
-        background-color: black;
+        background-color: $colorBlack;
         height: 5px;
         width: 30px;
         border-radius: 2px;
