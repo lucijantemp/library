@@ -147,8 +147,6 @@ function makeBook() {
     // creating and adding all necesarry nodes
     let optionsContainer = document.createElement("div")
     optionsContainer.classList.add("options-container")
-    let optionEditContainer = document.createElement("div")
-    optionEditContainer.classList.add("options-edit-container")
     let optionDelete = document.createElement("button")
     optionDelete.classList.add("option-delete")
     let optionEditDisplay = document.createElement("div")
@@ -160,11 +158,10 @@ function makeBook() {
     optionEditMinus.classList.add("edit-pages")
     optionEditMinus.classList.add("minus")
     book.appendChild(optionsContainer)
-    optionsContainer.appendChild(optionEditContainer)
+    optionsContainer.appendChild(optionEditDisplay)
     optionsContainer.appendChild(optionDelete)
-    optionEditContainer.appendChild(optionEditDisplay)
-    optionEditContainer.appendChild(optionEditPlus)
-    optionEditContainer.appendChild(optionEditMinus)
+    optionsContainer.appendChild(optionEditPlus)
+    optionsContainer.appendChild(optionEditMinus)
     optionEditDisplay.innerHTML = `<span class="span-pages-read">${inputPagesRead.value}</span>/<span class="span-pages-total">${inputPagesTotal.value}</span>`
     optionEditMinus.innerHTML = "-"
     optionEditPlus.innerHTML = "+"

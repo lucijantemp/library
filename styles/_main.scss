@@ -9,7 +9,6 @@ main {
         background-color: transparent;
         width: 85%;
         display: flex;
-        overflow-y: hidden;
         overflow-x: auto;
         align-items: center;
 
@@ -32,17 +31,18 @@ main {
             }
 
             h2 {
-                margin-bottom: 50px;
+                margin-bottom: 90px;
                 text-align: center;
                 color: #313131;
             }
 
             .options-container {
-                display: flex;
+                display: grid;
+                grid-gap: 5px;
                 height: 60px;
-                margin-bottom: 100px;
-                width: 140px;
-                justify-content: space-between;
+                width: 150px;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr 2fr;
 
                 button {
                     letter-spacing: 1px;
@@ -51,11 +51,9 @@ main {
                 }
 
                 .edit-pages {
-                    width: 27px;
-                    height: 27px;
+                    width: 30px;
+                    height: 30px;
                     border: none;
-                    margin-right: 10px;
-                    margin-top: 9px;
                     font-size: 1.3rem;
 
                     &:hover {
@@ -63,10 +61,19 @@ main {
                     }
                 }
 
+                .edit-display {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+
                 .option-delete {
                     border: none;
                     width: 60px;
                     height: 60px;
+                    grid-row-start: 1;
+                    grid-row-end: 3;
+                    grid-column-start: 3;
+                    grid-column-end: 4;
 
                     &:hover {
                         background-color: $colorWhiteHover;

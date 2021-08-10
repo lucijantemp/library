@@ -82,3 +82,26 @@ aside {
         text-align: center;
     }
 }
+
+// will appear on mobile devices (used to show/hide navbar )
+#btn-hamburger {
+    position: absolute;
+    display: none;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    background-color: transparent;
+    z-index: 1;
+
+    .hamburger-slice {
+        background-color: $colorBlack;
+        height: 5px;
+        width: 30px;
+        border-radius: 2px;
+        transition: transform 500ms;
+    }
+}
